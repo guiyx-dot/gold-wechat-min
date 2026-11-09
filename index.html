@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>通用金转出微信 · 最低金额 · 需求说明</title>
+  <style>
+    :root { --bg: #f3f5f7; --ink: #1f1f1f; --sub: #595959; --line: #e6e8eb; --teal: #13c2c2; --red: #cf1322; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.6; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 64px; }
+    h1 { margin: 0; font-size: 26px; }
+    h2 { margin: 0 0 12px; font-size: 16px; }
+    .lead { margin: 8px 0 0; color: var(--sub); }
+    .card { background: #fff; border-radius: 12px; padding: 18px; margin-top: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    td:first-child { white-space: nowrap; width: 96px; }
+    th { background: #fafafa; color: var(--sub); font-weight: 550; }
+    .mark { display: inline-block; border-radius: 4px; font-size: 12px; padding: 0 6px; line-height: 20px; background: #fff1f0; color: var(--red); }
+    figure { margin: 14px 0 0; }
+    img { width: 100%; border: 1px solid var(--line); border-radius: 8px; }
+    figcaption { margin-top: 8px; color: var(--sub); font-size: 12px; }
+    .phone { width: 320px; margin-top: 14px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #f7f8fa; }
+    .phone header { height: 44px; display: flex; align-items: center; justify-content: center; background: #fff; font-weight: 600; border-bottom: 1px solid var(--line); }
+    .amt { background: #fff; text-align: center; padding: 18px 16px 8px; }
+    .amt b { display: block; font-size: 28px; font-weight: 650; }
+    .amt span { color: var(--sub); font-size: 13px; }
+    .rows { margin: 8px 12px 0; background: #fff; border-radius: 10px; padding: 4px 12px; }
+    .rows div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .rows div:last-child { border-bottom: 0; }
+    .rows em { font-style: normal; color: var(--sub); }
+    .steps { margin: 8px 12px 0; background: #fff; border-radius: 10px; padding: 10px 12px; }
+    .step { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font-size: 13px; }
+    .step i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+    .ok i { background: #52c41a; }
+    .bad { color: var(--red); }
+    .bad i { background: var(--red); }
+    .reason { margin: 0 12px; padding: 0 12px 10px 26px; background: #fff; color: var(--red); font-size: 13px; border-radius: 0 0 10px 10px; }
+    .steps { border-radius: 10px 10px 0 0; padding-bottom: 0; }
+    .foot { display: flex; justify-content: space-between; align-items: center; margin: 8px 12px 12px; padding: 10px 12px; background: #fff; border-radius: 10px; font-size: 13px; }
+    .foot b { font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>通用金转出微信 · 最低金额</h1>
+    <p class="lead">通用金「转出至微信」时，转出金额低于 0.3 元，微信侧无法打款。收支详情直接显示转出失败，并写明原因。不再停在打款中。</p>
+
+    <section class="card">
+      <h2>这次改什么</h2>
+      <table>
+        <thead><tr><th></th><th>现在</th><th>改为</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>适用范围</td>
+            <td>转出至微信，金额多低都会进入打款</td>
+            <td>只处理转出至微信。转出金额低于 0.3 元无法打款</td>
+          </tr>
+          <tr>
+            <td>页面状态</td>
+            <td>待审核通过后进入打款中，底部按钮也是打款中</td>
+            <td><span class="mark">改为</span> 转出失败。页面不再出现打款中</td>
+          </tr>
+          <tr>
+            <td>失败原因</td>
+            <td>无</td>
+            <td>转出金额不可低于0.3元</td>
+          </tr>
+          <tr>
+            <td>0.3 元</td>
+            <td>同样会进打款</td>
+            <td>转出金额达到 0.3 元，仍按原来的流程打款</td>
+          </tr>
+          <tr>
+            <td>已卡住的单</td>
+            <td>停在打款中</td>
+            <td>转出至微信且转出金额仍低于 0.3 元的，打开页面也显示转出失败，原因同上</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="phone">
+        <header>收支详情</header>
+        <div class="amt"><b>-0.01</b><span>支出</span></div>
+        <div class="rows">
+          <div><em>类型</em><span>转出至微信</span></div>
+          <div><em>转出金额</em><span>¥0.01</span></div>
+        </div>
+        <div class="steps">
+          <div class="step ok"><span><i></i>待审核</span></div>
+          <div class="step bad"><span><i></i>转出失败</span></div>
+        </div>
+        <div class="reason">转出金额不可低于0.3元</div>
+        <div class="foot"><span>转出失败</span><b>¥0.01</b></div>
+      </div>
+      <p class="lead">按转出金额判断。失败后这笔钱是否退回通用金余额，这次没说，待确认。</p>
+    </section>
+
+    <section class="card">
+      <h2>当前页面</h2>
+      <figure>
+        <img src="assets/wechat-payout-min/01-stuck.png" alt="转出至微信停在打款中" />
+        <figcaption>收支详情。转出至微信，转出金额 0.01 元，进度停在打款中。</figcaption>
+      </figure>
+    </section>
+  </div>
+</body>
+</html>
